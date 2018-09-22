@@ -4,10 +4,17 @@ const app = express();
 const morgan = require("morgan");
 //installed bodyparser
 const bodyParser = require('body-parser');
+//imporint mongoose
+const mongoose = require('mongoose');
 
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+//connect ot mongoose
+mongoose.connect(
+        'mongodb://localhost:27017/myapp',
+        { useNewUrlParser: true }
+);
 
 //use morgan
 app.use(morgan('dev'));
