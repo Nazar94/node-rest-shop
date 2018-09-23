@@ -14,7 +14,14 @@ const orderRoutes = require('./api/routes/orders');
 mongoose.connect(
         'mongodb://localhost:27017/myapp',
         { useNewUrlParser: true }
-);
+).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
+});
+
+mongoose.Promise = global.Promise;
 
 //use morgan
 app.use(morgan('dev'));
