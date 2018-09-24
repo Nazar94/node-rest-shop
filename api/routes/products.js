@@ -60,6 +60,12 @@ router.post('/', (req, res, next)=>{
         });
     })
     .catch(err => {
+        if(!req.body.content) {
+            return res.status(400).send({
+                message: "Wrong content",
+                error:err
+            });
+        }
         console.log(err);
         res.status(500).json({
             error:err
